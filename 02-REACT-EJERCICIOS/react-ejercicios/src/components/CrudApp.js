@@ -40,7 +40,10 @@ const CrudApp = () => {
 		// console.log(data)
 		setDb([...db, data])
 	}
-	const updateData = data => {}
+	const updateData = data => {
+		let newData = db.map(el => (el.id === data.id ? data : el))
+		setDb(newData)
+	}
 	const deleteData = id => {}
 
 	return (
@@ -52,7 +55,11 @@ const CrudApp = () => {
 				dataToEdit={dataToEdit}
 				setDataToEdit={setDataToEdit}
 			/>
-			<CrudTable data={db} deleteData={deleteData} />
+			<CrudTable
+				data={db}
+				setDataToEdit={setDataToEdit}
+				deleteData={deleteData}
+			/>
 		</Fragment>
 	)
 }
