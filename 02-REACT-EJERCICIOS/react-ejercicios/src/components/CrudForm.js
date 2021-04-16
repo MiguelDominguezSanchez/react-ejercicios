@@ -6,13 +6,36 @@ const initialForm = {
 	id: null,
 }
 
-const CrudForm = () => {
+const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 	const [form, setForm] = useState(initialForm)
-	const handleChange = e => {}
 
-	const handleSubmit = e => {}
+	const handleChange = e => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		})
+	}
 
-	const handleReset = e => {}
+	const handleSubmit = e => {
+		e.preventDefault()
+		if (!form.name || !form.constellation) {
+			alert('datos incompletos')
+			return
+		}
+
+		if (form.id === null) {
+			createData(form)
+		} else {
+			updateData(form)
+		}
+
+		handleReset()
+	}
+
+	const handleReset = e => {
+		setForm(initialForm)
+		setDataToEdit(null)
+	}
 
 	return (
 		<div>
