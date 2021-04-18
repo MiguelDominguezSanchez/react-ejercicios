@@ -7,19 +7,19 @@ const SongDetails = ({ search, lyric, bio }) => {
 	if (!lyric || !bio) return null
 	return (
 		<Fragment>
-			{lyric.error || lyric.err || 'AbortError' ? (
+			{lyric.error || lyric.err || lyric.name === 'AbortError' ? (
 				<Message
-					msg={`Error: no existe la canción '${search.song}'`}
+					msg={`Error: no existe la canción "<em>${search.song}</em>"`}
 					bgColor='#dc3545'
 				/>
 			) : (
-				<SongLyric />
+				<SongLyric title={search.song} lyrics={lyric.lyrics} />
 			)}
 			{bio.artists ? (
-				<SongArtist />
+				<SongArtist artist={bio.artists[0]} />
 			) : (
 				<Message
-					msg={`Error: no existe el  interprete '${search.artist}'`}
+					msg={`Error: no existe el  interprete '<em>${search.artist}</em>'`}
 					bgColor='#dc3545'
 				/>
 			)}
