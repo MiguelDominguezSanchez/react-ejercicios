@@ -9,8 +9,9 @@ const SongSearch = () => {
 	const [bio, setBio] = useState(null)
 	const [loading, setLoading] = useState(false)
 
-	const handleSearch (data) => {
-		console.log(data)
+	const handleSearch = (data) => {
+		// console.log(data)
+		setSearch(data)
 	}
 
 	return (
